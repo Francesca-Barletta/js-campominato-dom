@@ -33,7 +33,8 @@ playButton.addEventListener('click', function () {
     //dentro un ciclo for devo dare un numero per ogni casella
 
     gridElement.innerHTML = ''
-    const bombNumbers = bombGenerator(gridBox)
+    const bombList = bombGenerator(gridBox)
+    
     for (let i = 0; i < gridBox; i++) {
         let number = i + 1;
         console.log(number)
@@ -128,7 +129,7 @@ nel senso che se anche ci clicca non deve succedere niente.*/
 //   } while(randomNumbers.length < 16)
 //   console.log(randomNumbers)
 
-function bombGenerator() {
+function bombGenerator(gridBox) {
     let randomNumbers = []
     let copyNumber = false
     //let randomIndex = randomNumbers[i]
