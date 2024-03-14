@@ -1,0 +1,73 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body{
+    background-color: aquamarine;
+    font-family: Arial, Helvetica, sans-serif;
+}
+.header{
+    background-color: white;
+    height: 100px;
+    padding: 0 50px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.header-title{
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    color: rgb(18, 10, 110);
+    font-size:30px;
+}
+.header-menu{
+    display: flex;
+        align-items: center;
+    gap: 5px;
+}
+.main-app{
+    padding: 50px;
+}
+.container{
+    max-width: 800px;
+    margin: 0 auto;
+}
+.cell{
+    aspect-ratio: 1/1;
+    border: 3px solid white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+}
+.grid{
+    display: flex;
+    flex-wrap: wrap;
+    user-select: none;
+    cursor: pointer;
+}
+
+.cell-10{
+    width: calc(100% / 10);
+}
+.cell-9{
+    width: calc(100% / 9);
+}
+.cell-7{
+    width: calc(100% / 7);
+}
+.bg-red{
+    background-color: red;
+    color: white;
+}
+.click-stop{
+pointer-events: none;
+}
+
+
+.bg-dark{
+    background-color: rgb(18, 10, 110);
+    color: white;
+}
