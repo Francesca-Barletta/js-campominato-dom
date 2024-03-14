@@ -31,8 +31,9 @@ playButton.addEventListener('click', function () {
     //devo creare una costante che genera un quadrato moltiplicando row al quadrato
     const gridBox = row ** 2;
     //dentro un ciclo for devo dare un numero per ogni casella
-    
+
     gridElement.innerHTML = ''
+    const bombNumbers = bombGenerator(gridBox)
     for (let i = 0; i < gridBox; i++) {
         let number = i + 1;
         console.log(number)
@@ -40,10 +41,10 @@ playButton.addEventListener('click', function () {
         //creo l'elemento div con creteelement
         const cellElement = document.createElement('div')
         cellElement.className = 'cell'
-        
+
         cellElement.classList.add(cellClass)
         //gli dò la classe che ho già creato su css
-        
+
         //dentro inserisco il numero creato con in ciclo for
         cellElement.innerHTML = number
         //devo aggiungere al grid recuperato dal dom le celle
@@ -92,3 +93,59 @@ Tutte le caselle delle bombe devono diventare rosse
 BONUS 3:
 Una volta che la partita termina l’utente non deve più poter cliccare sulle cella, 
 nel senso che se anche ci clicca non deve succedere niente.*/
+
+//devo creare un array di 16 numeri non doppioni random
+//devo usare un ciclo while o do while perchè non so quante iterazioni servono
+
+//let bombList = []
+//let copyNumber = false
+//do{
+//    for(let i = 0; i <= 16; i++){
+//        const bombNumber = Math.floor(Math.random()* gridBox) + 1;
+//        if(bombList[i] === bombNumber){
+//           copyNumber = true
+//        }if (copyNumber === false){
+//            bombList.push(bombNumber)
+//        }}
+//}while(bombList <= bombList[16])
+//console.log(bombList)
+//let randomNumbers = []
+//let copyNumber = false
+////let randomIndex = randomNumbers[i]
+//let randomNumber = 0
+//let randomIndex
+//do{
+//    //let randomIndex = randomNumbers[i]
+//    let randomNumber = Math.floor(Math.random() * gridBox) +1;
+//    randomNumbers.push(randomNumber)
+//    if (randomNumbers.includes(randomNumber) === false){
+//        randomNumbers.push(randomNumber)
+//        randomIndex = randomNumbers[i]
+//    }if(randomIndex === randomNumber){
+//        copyNumber = true
+//    }
+//    
+//   } while(randomNumbers.length < 16)
+//   console.log(randomNumbers)
+
+function bombGenerator() {
+    let randomNumbers = []
+    let copyNumber = false
+    //let randomIndex = randomNumbers[i]
+    let randomNumber = 0
+    let randomIndex
+    do {
+        //let randomIndex = randomNumbers[i]
+        let randomNumber = Math.floor(Math.random() * gridBox) + 1;
+        randomNumbers.push(randomNumber)
+        if (randomNumbers.includes(randomNumber) === false) {
+            randomNumbers.push(randomNumber)
+            randomIndex = randomNumbers[i]
+        } if (randomIndex === randomNumber) {
+            copyNumber = true
+        }
+
+    } while (randomNumbers.length < 16)
+    console.log(randomNumbers)
+    return randomNumbers
+}
