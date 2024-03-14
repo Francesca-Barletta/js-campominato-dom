@@ -7,6 +7,9 @@ console.log('campominato')
 //devo recuperare dal dom il pulsante play 
 const playButton = document.querySelector('.play');
 //dargli la funzione addeventlistner e dirgli che al click deve generare una griglia quadrata
+
+let bombList;
+
 playButton.addEventListener('click', function () {
     //devo recuperare dal dom il div con classe grid
     const gridElement = document.querySelector('.grid');
@@ -33,13 +36,16 @@ playButton.addEventListener('click', function () {
     //dentro un ciclo for devo dare un numero per ogni casella
 
     gridElement.innerHTML = ''
-    const bombList = bombGenerator(gridBox)
-    
+    bombList = bombGenerator(gridBox)
+    let allCellNumbers = []
     for (let i = 0; i < gridBox; i++) {
         let number = i + 1;
-        console.log(number)
+        allCellNumbers.push(number)
+        
+        //console.log(number)
         //devo rendere visibili le singole celle della griglia
         //creo l'elemento div con creteelement
+        //let bombList = bombGenerator(gridBox)
         const cellElement = document.createElement('div')
         cellElement.className = 'cell'
 
@@ -48,15 +54,30 @@ playButton.addEventListener('click', function () {
 
         //dentro inserisco il numero creato con in ciclo for
         cellElement.innerHTML = number
+     
         //devo aggiungere al grid recuperato dal dom le celle
         gridElement.append(cellElement)
         //quando clicco una casella deve cambiare colore
         cellElement.addEventListener('click', function () {
             //se è già cliccata con .toggle ritorna com'era
-            cellElement.classList.toggle('bg-dark')
+            //let numbers;
+            if (bombList.includes(number) === true) {
+                console.log(number + 'è una bomba');
+                cellElement.classList.add('bg-red');
+                gridElement.classList.add('stop');
+               
+                //for (let index = 1; index = allCellNumbers.length; index++) {
+                //    let numbers = allCellNumbers[index]
+             
+            } else {
+                cellElement.classList.add('bg-dark');
+            }
+
         })
 
-    }
+    }console.log(allCellNumbers)
+    console.log(bombList)
+
 })
 
 /*Consegna
@@ -98,55 +119,21 @@ nel senso che se anche ci clicca non deve succedere niente.*/
 //devo creare un array di 16 numeri non doppioni random
 //devo usare un ciclo while o do while perchè non so quante iterazioni servono
 
-//let bombList = []
-//let copyNumber = false
-//do{
-//    for(let i = 0; i <= 16; i++){
-//        const bombNumber = Math.floor(Math.random()* gridBox) + 1;
-//        if(bombList[i] === bombNumber){
-//           copyNumber = true
-//        }if (copyNumber === false){
-//            bombList.push(bombNumber)
-//        }}
-//}while(bombList <= bombList[16])
-//console.log(bombList)
-//let randomNumbers = []
-//let copyNumber = false
-////let randomIndex = randomNumbers[i]
-//let randomNumber = 0
-//let randomIndex
-//do{
-//    //let randomIndex = randomNumbers[i]
-//    let randomNumber = Math.floor(Math.random() * gridBox) +1;
-//    randomNumbers.push(randomNumber)
-//    if (randomNumbers.includes(randomNumber) === false){
-//        randomNumbers.push(randomNumber)
-//        randomIndex = randomNumbers[i]
-//    }if(randomIndex === randomNumber){
-//        copyNumber = true
-//    }
-//    
-//   } while(randomNumbers.length < 16)
-//   console.log(randomNumbers)
 
-function bombGenerator(gridBox) {
-    let randomNumbers = []
-    let copyNumber = false
+function bombGenerator(max) {
+    let randomNumbers = [];
+    let copyNumber = false;
     //let randomIndex = randomNumbers[i]
-    let randomNumber = 0
-    let randomIndex
+    let randomIndex;
     do {
         //let randomIndex = randomNumbers[i]
-        let randomNumber = Math.floor(Math.random() * gridBox) + 1;
-        randomNumbers.push(randomNumber)
+        // Genero un numero casuale
+        let randomNumber = Math.floor(Math.random() * max) + 1;
         if (randomNumbers.includes(randomNumber) === false) {
-            randomNumbers.push(randomNumber)
-            randomIndex = randomNumbers[i]
-        } if (randomIndex === randomNumber) {
-            copyNumber = true
+            randomNumbers.push(randomNumber);
         }
 
-    } while (randomNumbers.length < 16)
-    console.log(randomNumbers)
-    return randomNumbers
+    } while (randomNumbers.length < 16);
+    console.log(randomNumbers);
+    return randomNumbers;
 }

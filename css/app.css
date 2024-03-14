@@ -62,7 +62,7 @@ body{
     background-color: red;
     color: white;
 }
-.click-stop{
+.stop{
 pointer-events: none;
 }
 
