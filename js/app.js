@@ -38,6 +38,7 @@ playButton.addEventListener('click', function () {
     gridElement.innerHTML = ''
     bombList = bombGenerator(gridBox)
     let allCellNumbers = []
+    let clickCounter = 0;
     for (let i = 0; i < gridBox; i++) {
         let number = i + 1;
         allCellNumbers.push(number)
@@ -58,21 +59,41 @@ playButton.addEventListener('click', function () {
         //devo aggiungere al grid recuperato dal dom le celle
         gridElement.append(cellElement)
         //quando clicco una casella deve cambiare colore
+        
+        
         cellElement.addEventListener('click', function () {
+        
+            
+            
+            
             //se è già cliccata con .toggle ritorna com'era
             //let numbers;
-            if (bombList.includes(number) === true) {
+            if (bombList.includes(number)) {
                 console.log(number + 'è una bomba');
                 cellElement.classList.add('bg-red');
                 gridElement.classList.add('stop');
+               
+                    if(bombList.includes(allCellNumbers)){
+                    cellElement.classList.add('bg-red');
+                }
+                alert(`hai perso, punti totalizzati: ${clickCounter}`)
+            
+               
                
                 //for (let index = 1; index = allCellNumbers.length; index++) {
                 //    let numbers = allCellNumbers[index]
              
             } else {
+                clickCounter += 1;
                 cellElement.classList.add('bg-dark');
+                cellElement.classList.add('stop');
+                
+                
             }
-
+            console.log('clickCounter', clickCounter)
+            if(clickCounter === gridBox - 16){
+                alert(`hai vinto! punteggio: ${clickCounter}`)
+            }
         })
 
     }console.log(allCellNumbers)
