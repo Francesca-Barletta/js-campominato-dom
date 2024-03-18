@@ -69,19 +69,32 @@ playButton.addEventListener('click', function () {
             //se è già cliccata con .toggle ritorna com'era
             //let numbers;
             if (bombList.includes(number)) {
-            //allCellNumbers.forEach(bombList[i]);
-                cellElement.classList.add('bg-red');  
-            if(allCellNumbers.includes(bombList[i])){
+                //allCellNumbers.forEach(bombList[i]);
+                //cellElement.classList.add('bg-red');
+
+                const cells = document.querySelectorAll('.cell');
+                for (let j = 0; j < cells.length; j++) {
+                    const cellElement = cells[j];
+                    const cellNumber = parseInt(cellElement.innerHTML);
+                    if (bombList.includes(cellNumber)) {
+                        cellElement.classList.add('bg-red');
+                    }
+                }
+                /*
+                if (allCellNumbers.includes(bombList[i])) {
+                    cellElement.classList.add('bg-red');
+                }
+                */
+
+
+                console.log(allCellNumbers.indexOf(bombList[i]));
+                console.log(number + 'è una bomba');
                 cellElement.classList.add('bg-red');
-            }
-            console.log(allCellNumbers.indexOf(bombList[i]));
-            console.log(number + 'è una bomba');
-            cellElement.classList.add('bg-red');
-            gridElement.classList.add('stop');
-            console.log(number);
-            console.log('tutti i numeri i ', allCellNumbers[i])
-            console.log('bomblist i', bombList[i]);
-            }else {
+                gridElement.classList.add('stop');
+                console.log(number);
+                console.log('tutti i numeri i ', allCellNumbers[i])
+                console.log('bomblist i', bombList[i]);
+            } else {
                 clickCounter += 1;
                 cellElement.classList.add('bg-dark');
                 cellElement.classList.add('stop');
