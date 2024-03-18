@@ -42,7 +42,7 @@ playButton.addEventListener('click', function () {
     for (let i = 0; i < gridBox; i++) {
         let number = i + 1;
         allCellNumbers.push(number)
-        
+
         //console.log(number)
         //devo rendere visibili le singole celle della griglia
         //creo l'elemento div con creteelement
@@ -55,49 +55,45 @@ playButton.addEventListener('click', function () {
 
         //dentro inserisco il numero creato con in ciclo for
         cellElement.innerHTML = number
-     
+
         //devo aggiungere al grid recuperato dal dom le celle
         gridElement.append(cellElement)
         //quando clicco una casella deve cambiare colore
-        
-        
+
+
         cellElement.addEventListener('click', function () {
-        
-            
-            
-            
+
+
+
+
             //se è già cliccata con .toggle ritorna com'era
             //let numbers;
             if (bombList.includes(number)) {
-                console.log(number + 'è una bomba');
+            //allCellNumbers.forEach(bombList[i]);
+                cellElement.classList.add('bg-red');  
+            if(allCellNumbers.includes(bombList[i])){
                 cellElement.classList.add('bg-red');
-                gridElement.classList.add('stop');
-               
-                    if(bombList.includes(allCellNumbers)){
-                    cellElement.classList.add('bg-red');
-                }
-                alert(`hai perso, punti totalizzati: ${clickCounter}`)
-            
-               
-               
-                //for (let index = 1; index = allCellNumbers.length; index++) {
-                //    let numbers = allCellNumbers[index]
-             
-            } else {
+            }
+            console.log(allCellNumbers.indexOf(bombList[i]));
+            console.log(number + 'è una bomba');
+            cellElement.classList.add('bg-red');
+            gridElement.classList.add('stop');
+            console.log(number);
+            console.log('tutti i numeri i ', allCellNumbers[i])
+            console.log('bomblist i', bombList[i]);
+            }else {
                 clickCounter += 1;
                 cellElement.classList.add('bg-dark');
                 cellElement.classList.add('stop');
-                
-                
-            }
-            console.log('clickCounter', clickCounter)
-            if(clickCounter === gridBox - 16){
+
+            } console.log('clickCounter', clickCounter);
+            if (clickCounter === gridBox - 16) {
                 alert(`hai vinto! punteggio: ${clickCounter}`)
             }
         })
 
-    }console.log(allCellNumbers)
-    console.log(bombList)
+    } console.log(allCellNumbers)
+
 
 })
 
